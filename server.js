@@ -14,11 +14,23 @@ app.use(express.json());
 
 app.use(express.urlencoded({extended: true}));
 
-//simple route
-app.get("/", (req, res) => {
-    res.json({message: "Welcome to beskoder application."});
+
+const db = require("./app/models");
+db.sequelize.sync()
+.then(() => {
+    console.log("Synced db.");
+})
+.catch((err) => {
+    console.log("Failed to sync db: " + err.message);
 });
 
+
+//simple route
+app.get("/", (req, res) => {
+    res.json({message: "Welcome to CRUD Rest API with Express, Postgresql and sequelize."});
+});
+
+require("./app/routes/tutorials.routes")(app);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)

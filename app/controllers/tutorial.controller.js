@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
     //validate request
-    if(!req.body.title) {
+    if(!req.query.title) {
         res.status(400).send({
             message: "Title content cannot be empty!"
         })
@@ -12,17 +12,18 @@ exports.create = (req, res) => {
 
     //create Tutorial
     const tutorial = {
-        title: req.body.title,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        title: req.query.title,
+        description: req.query.description,
+        published: req.query.published ? req.query.published : false
     };
 
     //save Tutorial
     Tutorial.create(tutorial)
     .then(data => {
-        res.send(data);
+        res.status(201).send(data);
     })
     .catch(err => {
+        console.log(err.message)
         res.status(500).send({
             message: err.message || "Some error occured while creating the tutorial."
         })
@@ -68,8 +69,12 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id
-
-    Tutorial.update(req.body, {
+    const updateTutorial = {
+        title: req.query.title,
+        description: req.query.description,
+        published: req.query.published
+    }
+    Tutorial.update(updateTutorial, {
         where: {id: id}
     })
     .then(num => {
@@ -79,7 +84,7 @@ exports.update = (req, res) => {
             })
         }else {
             res.status(400).send({
-                message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+                message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.query is empty!`
             })
         }
     })
