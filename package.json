@@ -1,0 +1,25 @@
+{
+  "name": "crud_rest_api_with_express_and_sequelize",
+  "version": "1.0.0",
+  "description": "Nodejs CRUD Rest Apis with Express, Sequelize & PostgreSQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdihakim-Muhumed/CRUD_Rest_API_With_Express_and_Sequelize.git"
+  },
+  "keywords": [
+    "REST_APIs",
+    "Express",
+    "Sequelize",
+    "Postgresql"
+  ],
+  "author": "Abdihakim Muhumed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Abdihakim-Muhumed/CRUD_Rest_API_With_Express_and_Sequelize/issues"
+  },
+  "homepage": "https://github.com/Abdihakim-Muhumed/CRUD_Rest_API_With_Express_and_Sequelize#readme"
+}
